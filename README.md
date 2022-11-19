@@ -7,3 +7,4 @@ Jenkins with
 * [doctl](https://github.com/digitalocean/doctl), to interact with DigitalOcean
 
 See [this project on the Docker Hub](https://hub.docker.com/r/dcycle/jenkins-helm/).
+See [this project on GitHub](https://github.com/dcycle/docker-jenkins-helm).
