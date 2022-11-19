@@ -16,23 +16,15 @@ chmod +x ./get-helm-3
 ./get-helm-3
 curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
 chmod +x ./kubectl
-mv ./kubectl /usr/local/bin/kubectlrm -f /var/cache/apk/*
+mv ./kubectl /usr/local/bin/kubectl
+rm -f /var/cache/apk/*
 echo ""
 echo "=> Install Helm done"
 echo ""
 echo "=> Install Doctl"
 echo ""
-# Inspird by https://github.com/alpine-docker/doctl/blob/main/Dockerfile
-# See https://gist.github.com/steinwaywhw/a4cd19cda655b8249d908261a62687f8
-# on how to get the latest release.
-apk add --update --no-cache tar
-curl -s https://api.github.com/repos/digitalocean/doctl/releases/latest \
-| grep "\/.*linux-amd64.tar.gz" \
-| cut -d : -f 2,3 \
-| tr -d \" \
-| wget -qi - \
-| tar xvz -C /usr/bin
-apk del tar
+apk add --no-cache --virtual .build-deps doctl && \
+rm -rf .build-deps
 echo ""
 echo "=> Install Doctl done"
 echo ""
